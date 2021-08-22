@@ -1,0 +1,22 @@
+.copyright {
+    display: flex;
+    justify-self: flex-end !important;
+    align-self: center;
+    padding: 20px;
+}
+
+a:link {
+    color: blue;
+    background-color: transparent;
+    text-decoration: none;
+}
+
+a:visited {
+    color: blue;
+    background-color: transparent;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
