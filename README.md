@@ -1,5 +1,9 @@
 # Corona Site
 
+[Hier](http://tobias.reicherzer.de/corona) sieht man Daten zur Pandemie  von bestimmten Landkreisen.
+
+Das ganze ist gemacht mit Vue.js
+
 ## Project setup
 ```
 npm install
@@ -14,11 +18,3 @@ npm run serve
 ```
 npm run build
 ```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
