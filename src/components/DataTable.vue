@@ -94,6 +94,7 @@ const citys = [
   {name: "Wolfsburg", ags: null},
   {name: "Rosenheim", ags: "09187", alias: "Pfaffing"},
   {name: "Neustadt a.d. Waldnaab", ags: null, alias: "Neustadt"},
+  {name: "Freyung-Grafenau", ags: null, alias: "Grafenau"},
 ];
 
 export default {
