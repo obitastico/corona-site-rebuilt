@@ -89,12 +89,12 @@ import axios from "axios";
 const citys = [
   {name: "München", ags: null},
   {name: "Altötting", ags: null},
+  {name: "Freyung-Grafenau", ags: null, alias: "Grafenau"},
   {name: "Unterallgäu", ags: null, alias: "Mindelheim"},
   {name: "Landsberg am Lech", ags: null, alias: "Landsberg"},
   {name: "Wolfsburg", ags: null},
   {name: "Rosenheim", ags: "09187", alias: "Pfaffing"},
   {name: "Neustadt a.d. Waldnaab", ags: null, alias: "Neustadt"},
-  {name: "Freyung-Grafenau", ags: null, alias: "Grafenau"},
 ];
 
 export default {
