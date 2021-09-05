@@ -136,7 +136,7 @@ export default {
 
       let last = { x: null, y: null };
 
-      inzidenzen_dates.sort((a, b) => new Date(a.date).getDate() - new Date(b.date).getDate())
+      inzidenzen_dates.sort();
 
       inzidenzen_dates.forEach((data, i) => {
         let x = x_axis.start + reference_line_margin + ((x_axis.end - x_axis.start - reference_line_margin * 2) / (inzidenzen_dates.length - 1)) * i;
