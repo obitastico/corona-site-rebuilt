@@ -18,12 +18,10 @@ h1 {
     margin-top: -10px;
     margin-bottom: 10px;
     font-size: var(--subtitle-font-size);
-    max-font-size: var(--subtitle-font-size);
 }
 
 td {
     font-size: var(--data-font-size);
-    max-font-size: var(--data-font-size);
     text-align: center;
     padding: 0.2em;
     border-right: var(--grid-line-width) solid black;
