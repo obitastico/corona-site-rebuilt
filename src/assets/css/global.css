@@ -2,13 +2,13 @@
 
 :root {
     --font: "Source Sans Pro";
-    --data-font-size: 14px;
+    --data-font-size: 10px;
     --grid-line-width: 2px;
-    --head-font-size: 16px;
-    --heading-font-size: 30px;
+    --head-font-size: 12px;
+    --heading-font-size: 25px;
     --subtitle-font-size: 0;
     --datatable-padding: .3em .5em;
-    --select-margin: 0 -.2em;
+    --select-margin: 0 -.1em;
 }
 
 @media screen and (min-width: 430px){
