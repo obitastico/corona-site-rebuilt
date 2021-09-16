@@ -24,6 +24,19 @@ export default {
 </script>
 
 <style>
+html {
+  width: 100%;
+  height: 100%;
+  min-width: 100%;
+  min-height: 100%;
+}
+
+body {
+  width: 100%;
+  height: 100%;
+  background-color: #333;
+}
+
 #app {
   margin: 0;
   padding: 0;

@@ -68,9 +68,13 @@ export default {
         return {"inzidenz": day.weekIncidence.toFixed(1), "date": day.date};
       });
 
+      console.log(inzidenzen_dates);
+
       if (!inzidenzen_dates.map(day => day.inzidenz).includes(today_data.inzidenz)) {
         inzidenzen_dates.push(today_data);
       }
+
+      console.log(inzidenzen_dates);
 
       // resize
       if (canvas.offsetWidth !== 0 && canvas.offsetHeight !== 0){

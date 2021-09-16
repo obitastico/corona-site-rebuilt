@@ -2,25 +2,49 @@
 
 :root {
     --font: "Source Sans Pro";
+    --data-font-size: 14px;
+    --grid-line-width: 2px;
+    --head-font-size: 16px;
+    --heading-font-size: 30px;
+    --subtitle-font-size: 0;
+    --datatable-padding: .3em .5em;
+    --select-margin: 0 -.2em;
+}
+
+@media screen and (min-width: 430px){
+    :root {
+        --select-margin: 0;
+        --subtitle-font-size: 12px;
+    }
+}
+
+@media screen and (min-width: 700px){
+    :root {
+        --data-font-size: 20px;
+        --head-font-size: 28px;
+        --heading-font-size: 45px;
+        --subtitle-font-size: 14px;
+        --grid-line-width: 4px;
+        --datatable-padding: .5em .7em;
+    }
+}
+
+@media screen and (min-width: 1000px){
+    :root {
+        --data-font-size: 30px;
+        --head-font-size: 40px;
+        --heading-font-size: 60px;
+        --subtitle-font-size: 16px;
+        --grid-line-width: 5px;
+        --datatable-padding: 1em 2em;
+        --select-margin: 0;
+    }
 }
 
 * {
     margin: 0;
     padding: 0;
     outline: none;
-    box-sizing: border-box;
     font-family: var(--font);
-    font-weight: 400;
-}
-
-html {
-    width: 100%;
-    height: 100%;
-    min-width: 100%;
-    min-height: 100%;
-}
-
-body {
-    width: 100%;
-    height: 100%;
+    font-weight: 500;
 }

@@ -2,7 +2,7 @@
     background-color: #4d4d4d;
     box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
     margin: 15px;
-    padding: 1em 2em;
+    padding: var(--datatable-padding);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -17,13 +17,16 @@ h1 {
 .subtitle {
     margin-top: -10px;
     margin-bottom: 10px;
+    font-size: var(--subtitle-font-size);
+    max-font-size: var(--subtitle-font-size);
 }
 
 td {
-    font-size: 30px;
+    font-size: var(--data-font-size);
+    max-font-size: var(--data-font-size);
     text-align: center;
     padding: 0.2em;
-    border-right: 5px solid black;
+    border-right: var(--grid-line-width) solid black;
 }
 
 td:last-child {
@@ -31,12 +34,12 @@ td:last-child {
 }
 
 th {
-    padding: 0.4em;
+    padding: .2em;
     font-weight: bold;
-    font-size: 40px;
+    font-size: var(--head-font-size);
     text-align: center;
-    border-bottom: 5px solid black;
-    border-right: 5px solid black;
+    border-bottom: var(--grid-line-width) solid black;
+    border-right: var(--grid-line-width) solid black;
 }
 
 th:last-child {
@@ -44,7 +47,7 @@ th:last-child {
 }
 
 h1 {
-    font-size: 60px;
+    font-size: var(--heading-font-size);
     font-weight: bold;
 }
 
@@ -66,20 +69,21 @@ a:hover {
 
 .output-table {
     border-collapse: collapse;
+    max-width: 100%;
 }
 
 select {
     background-color: #4d4d4d;
     font-weight: bold;
-    font-size: 40px;
-    padding: 5px;
+    font-size: var(--head-font-size);
     box-sizing: border-box;
     outline: none;
     border: none;
+    margin: var(--select-margin);
 }
 
 option {
-    padding: 2px 5px;
+    padding: 2px 4px;
 }
 
 .button {
