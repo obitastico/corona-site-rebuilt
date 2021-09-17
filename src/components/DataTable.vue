@@ -1,6 +1,6 @@
 <template>
   <div id="datatable">
-    <h1>Corona Daten</h1>
+    <h1>Never gonna...</h1>
     <p class="subtitle">Stand: {{ last_updated }}</p>
     <table class="output-table">
       <thead>

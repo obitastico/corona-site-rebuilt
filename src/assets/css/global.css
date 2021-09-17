@@ -47,6 +47,12 @@
     }
 }
 
+@supports (-webkit-touch-callout: none) {
+    select, option {
+        -webkit-appearance: none;
+    }
+}
+
 * {
     margin: 0;
     padding: 0;
