@@ -2,13 +2,12 @@
 
 :root {
     --font: "Source Sans Pro";
-    --data-font-size: 12px;
+    --data-font-size: 13px;
     --grid-line-width: 2px;
-    --head-font-size: 12px;
+    --head-font-size: 13px;
     --heading-font-size: 25px;
     --subtitle-font-size: 0;
     --datatable-padding: .3em .3em;
-    --select-margin: 0 -.1em;
     --copyright-font-size: 14px;
     --copyright-br-state: static;
 }
@@ -16,7 +15,6 @@
 @media screen and (min-width: 350px){
     :root {
         --heading-font-size: 30px;
-        --select-margin: 0;
         --subtitle-font-size: 12px;
     }
 }
@@ -41,15 +39,9 @@
         --heading-font-size: 60px;
         --subtitle-font-size: 16px;
         --grid-line-width: 5px;
-        --datatable-padding: 1em 2em;
+        --datatable-padding: 1em;
         --select-margin: 0;
         --copyright-font-size: 18px;
-    }
-}
-
-@supports (-webkit-touch-callout: none) {
-    select, option {
-        -webkit-appearance: none;
     }
 }
 

@@ -71,13 +71,15 @@ a:hover {
 }
 
 select {
-    background-color: #4d4d4d;
     font-weight: bold;
     font-size: var(--head-font-size);
     box-sizing: border-box;
     outline: none;
     border: none;
-    margin: var(--select-margin);
+    padding-right: .7em;
+    -webkit-appearance: none;
+    background: url(http://cdn1.iconfinder.com/data/icons/cc_mono_icon_set/blacks/16x16/br_down.png) no-repeat right #4d4d4d;
+    background-position-x: 96%;
 }
 
 option {
