@@ -7,7 +7,7 @@
       <tr>
         <th>Kategorie</th>
         <th v-for="(_, i) in Array(displayed_city_count).fill(0).map(() => null)" :key="i">
-          <select @change="select_change($event)" v-model="selected_citys_model[i]" :name="`City Slot ${i.toString()}`">
+          <select @change="select_change($event)" v-model="selected_citys_model[i]" @name="`City Slot ${i.toString()}`">
             <option v-for="(city, j) in filter_citys(citys, i)" :key="j">
               {{ city.alias || city.name }}
             </option>
@@ -89,7 +89,7 @@ import axios from "axios";
 const citys = [
   {name: "München", ags: null},
   {name: "Altötting", ags: null},
-  {name: "Freyung-Grafenau", ags: null, alias: "Grafenau"},
+  // {name: "Freyung-Grafenau", ags: null, alias: "Grafenau"},
   {name: "Unterallgäu", ags: null, alias: "Mindelheim"},
   {name: "Landsberg am Lech", ags: null, alias: "Landsberg"},
   {name: "Wolfsburg", ags: null},
