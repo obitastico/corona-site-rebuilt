@@ -2,20 +2,22 @@
 
 :root {
     --font: "Source Sans Pro";
-    --data-font-size: 13px;
+    --data-font-size: 14px;
     --grid-line-width: 2px;
-    --head-font-size: 13px;
+    --head-font-size: 14px;
     --heading-font-size: 25px;
     --subtitle-font-size: 0;
     --datatable-padding: .3em .3em;
     --copyright-font-size: 14px;
     --copyright-br-state: static;
+    --select-arrow-size: 8px;
 }
 
 @media screen and (min-width: 350px){
     :root {
         --heading-font-size: 30px;
         --subtitle-font-size: 12px;
+        --select-arrow-size: 9px;
     }
 }
 
@@ -29,6 +31,7 @@
         --datatable-padding: .5em .7em;
         --copyright-font-size: 16px;
         --copyright-br-state: none;
+        --select-arrow-size: 14px;
     }
 }
 
@@ -42,6 +45,7 @@
         --datatable-padding: 1em;
         --select-margin: 0;
         --copyright-font-size: 18px;
+        --select-arrow-size: 16px;
     }
 }
 
