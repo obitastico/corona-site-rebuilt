@@ -97,10 +97,10 @@ export default {
 
       // draw main axises
       // y-axis
-      let axisMargin = 70;
+      let padding = {left: 55, right: 15, top: 35, bottom: 40};
 
-      let x_axis = { start: axisMargin, end: canvas.width - 30, y: canvas.height - axisMargin, text: "Tag" };
-      let y_axis = { x: axisMargin, start: 20, end: canvas.height - axisMargin, text: "Inzidenz" };
+      let x_axis = { start: padding.left, end: canvas.width - padding.right, y: canvas.height - padding.bottom, text: "Tag:" };
+      let y_axis = { x: padding.left, start: padding.top, end: canvas.height - padding.bottom, text: "Inzidenz:" };
 
       // y-axis
       ctx.draw_vertical_line(y_axis.start, y_axis.end, y_axis.x);
@@ -111,13 +111,16 @@ export default {
       ctx.draw_horizontal_line(x_axis.start, x_axis.end, y_axis.start);
 
       // draw y label
-      ctx.save();
-      ctx.rotate(-90 * (Math.PI / 180));
-      ctx.fillText(y_axis.text, -canvas.height / 2, axisMargin - 47);
-      ctx.restore();
+      ctx.fillText(y_axis.text, padding.left - 9, padding.top - 10);
+
+      // vertical text:
+      // ctx.save();
+      // ctx.rotate(-90 * (Math.PI / 180));
+      // ctx.fillText(y_axis.text, -canvas.height / 2, axisMargin - 47);
+      // ctx.restore();
 
       // draw x label
-      ctx.fillText(x_axis.text, (x_axis.end - x_axis.start) / 2 + axisMargin, canvas.height - 17);
+      ctx.fillText(x_axis.text, padding.left - 20, canvas.height - 11);
 
       let min_inzidenz = Math.min(...inzidenzen_dates.map(({inzidenz}) => inzidenz));
       let max_inzidenz = Math.max(...inzidenzen_dates.map(({inzidenz}) => inzidenz));
