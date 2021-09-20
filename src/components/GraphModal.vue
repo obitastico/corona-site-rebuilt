@@ -68,7 +68,7 @@ export default {
         return {"inzidenz": day.weekIncidence.toFixed(1), "date": day.date};
       });
 
-      if (!inzidenzen_dates.map(day => day.inzidenz).includes(today_data.inzidenz)) {
+      if (!inzidenzen_dates.map(day => day.date).includes(today_data.date)) {
         inzidenzen_dates.push(today_data);
       }
 
@@ -112,12 +112,6 @@ export default {
 
       // draw y label
       ctx.fillText(y_axis.text, padding.left - 9, padding.top - 10);
-
-      // vertical text:
-      // ctx.save();
-      // ctx.rotate(-90 * (Math.PI / 180));
-      // ctx.fillText(y_axis.text, -canvas.height / 2, axisMargin - 47);
-      // ctx.restore();
 
       // draw x label
       ctx.fillText(x_axis.text, padding.left - 20, canvas.height - 11);

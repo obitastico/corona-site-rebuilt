@@ -12,10 +12,6 @@ CanvasRenderingContext2D.prototype.draw_vertical_line = function (start, end, x)
     this.stroke();
 };
 
-export function round(number, stellen) {
-    return Math.round(number * Math.pow(10, stellen)) / Math.pow(10, stellen);
-}
-
 export function linspace(start, stop, num) {
     const step = (stop - start) / (num - 1);
     return Array.from({ length: num }, (_, i) => start + step * i);
