@@ -12,7 +12,7 @@
 
 <script>
 import axios from "axios";
-import { linspace, map } from "@/assets/js/utils";
+import { linspace, map } from "@/assets/js/helper";
 
 export default {
   name: "GraphModal",
