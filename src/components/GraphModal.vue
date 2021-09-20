@@ -16,7 +16,7 @@ import { linspace, map } from "@/assets/js/utils";
 
 export default {
   name: "GraphModal",
-  data (){
+  data() {
     return {
       selected_city: "",
       modal_visible: false
@@ -84,10 +84,8 @@ export default {
 
       // change line color to white
       ctx.strokeStyle = "#FFF";
-
-      // set font
-      ctx.font = "23px Source Sans Pro";
       ctx.fillStyle = "#FFF";
+      ctx.font = "23px Source Sans Pro";
       ctx.textAlign = "center";
 
       if (inzidenzen_dates.length < 3) {
