@@ -34,7 +34,7 @@ export default {
   },
 
   events: {
-    "show-graph-event" (city){
+    "show-graph-event"(city) {
       this.selected_city = city.alias || city.name;
       this.modal_visible = true;
       if (!this.districts_history_data){
@@ -52,15 +52,15 @@ export default {
     fetch_disctrit_history_data(){
       let url = "https://api.corona-zahlen.org/districts/history/frozen-incidence/7";
       return axios.get(url)
-        .then(({ data }) => {
-          this.districts_history_data = data.data;
+        .then(res => {
+          this.districts_history_data = res.data.data;
         })
         .catch((error) => {
           console.log(error);
         });
     },
 
-    draw_graph({ ags , today_data}){
+    draw_graph({ ags , today_data }){
       let canvas = document.getElementById("verlauf-canvas");
       let ctx = canvas.getContext("2d");
 

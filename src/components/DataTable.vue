@@ -6,86 +6,67 @@
       <thead>
       <tr>
         <th>Kategorie</th>
-        <th v-for="(_, i) in Array(displayed_city_count).fill(0).map(() => null)" :key="i">
-          <select @change="select_change($event)" v-model="selected_citys_model[i]" :name="`City Slot ${i.toString()}`">
-            <option v-for="(city, j) in filter_citys(citys, i)" :key="j">
-              {{ city.alias || city.name }}
-            </option>
-          </select>
+        <th v-for="i in displayed_city_count" :key="i-1">
+          <template v-if="districts_general_data !== null">
+            <select v-model="selected_citys[i-1]">
+              <option v-for="(city, j) in filter_citys(i-1)" :key="j" :value="city">
+                {{ city.alias || city.name }}
+              </option>
+            </select>
+          </template>
+          <select v-else><option>Loading...</option></select>
         </th>
       </tr>
       </thead>
-      <tbody v-if="districts_general_data !== null">
-      <tr>
-        <td>Inzidenz</td>
-        <td v-for="(city, i) in selected_citys" :key="i">
-          {{ districts_general_data[city.ags].weekIncidence.toFixed(1) }}
-        </td>
-      </tr>
-      <tr>
-        <td>Tote</td>
-        <td v-for="(city, i) in selected_citys" :key="i">
-          {{ districts_general_data[city.ags].deaths }} (+{{ districts_general_data[city.ags].delta.deaths }})
-        </td>
-      </tr>
-      <tr>
-        <td>Fälle</td>
-        <td v-for="(city, i) in selected_citys" :key="i">
-          {{ districts_general_data[city.ags].cases }} (+{{ districts_general_data[city.ags].delta.cases }})
-        </td>
-      </tr>
-      <tr>
-        <td>Genesene</td>
-        <td v-for="(city, i) in selected_citys" :key="i">
-          {{ districts_general_data[city.ags].recovered }}
-        </td>
-      </tr>
-      <tr>
-        <td>Verlauf</td>
-        <td class="clickable-text verlauf" v-for="(_, i) in Array(displayed_city_count).fill(0).map(() => null)" :key="i" v-on:click="show_graph(i)">
-          Öffnen
-        </td>
-      </tr>
-      </tbody>
-      <tbody v-else>
-      <tr>
-        <td>Inzidenz</td>
-        <td v-for="(_, i) in selected_citys" :key="i">
-          NaN
-        </td>
-      </tr>
-      <tr>
-        <td>Tote</td>
-        <td v-for="(_, i) in selected_citys" :key="i">
-          NaN
-        </td>
-      </tr>
-      <tr>
-        <td>Fälle</td>
-        <td v-for="(_, i) in selected_citys" :key="i">
-          NaN
-        </td>
-      </tr>
-      <tr>
-        <td>Genesene</td>
-        <td v-for="(_, i) in selected_citys" :key="i">
-          NaN
-        </td>
-      </tr>
-      <tr>
-        <td>Verlauf</td>
-        <td class="clickable-text verlauf" v-for="(_, i) in Array(displayed_city_count).fill(0).map(() => null)" :key="i">
-          Öffnen
-        </td>
-      </tr>
+      <tbody>
+        <tr>
+          <td>Inzidenz</td>
+          <td v-for="(city, i) in selected_citys" :key="i">
+            <template v-if="districts_general_data !== null">
+              {{ districts_general_data[city.ags].weekIncidence.toFixed(1) }}
+            </template>
+            <template v-else>NaN</template>
+          </td>
+        </tr>
+        <tr>
+          <td>Tote</td>
+          <td v-for="(city, i) in selected_citys" :key="i">
+            <template v-if="districts_general_data !== null">
+              {{ districts_general_data[city.ags].deaths }} (+{{ districts_general_data[city.ags].delta.deaths }})
+            </template>
+            <template v-else>NaN</template>
+          </td>
+        </tr>
+        <tr>
+          <td>Fälle</td>
+          <td v-for="(city, i) in selected_citys" :key="i">
+            <template v-if="districts_general_data !== null">
+              {{ districts_general_data[city.ags].cases }} (+{{ districts_general_data[city.ags].delta.cases }})
+            </template>
+            <template v-else>NaN</template>
+          </td>
+        </tr>
+        <tr>
+          <td>Genesene</td>
+          <td v-for="(city, i) in selected_citys" :key="i">
+            <template v-if="districts_general_data !== null">
+              {{ districts_general_data[city.ags].recovered }}
+            </template>
+            <template v-else>NaN</template>
+          </td>
+        </tr>
+        <tr>
+          <td>Verlauf</td>
+          <td class="clickable-text verlauf" v-for="i in displayed_city_count" :key="i" @click="show_graph(i-1)">
+            Öffnen
+          </td>
+        </tr>
       </tbody>
     </table>
   </div>
 </template>
 
 <script>
-import axios from "axios";
-
 const citys = [
   {name: "München", ags: null},
   {name: "Altötting", ags: null},
@@ -97,55 +78,60 @@ const citys = [
   {name: "Neustadt a.d. Waldnaab", ags: null, alias: "Neustadt"},
 ];
 
+const displayed_city_count = 3;
+
 export default {
   name: "DataTable",
 
   data() {
-    let displayed_city_count = 3;
     return {
       displayed_city_count: displayed_city_count,
-      citys: citys,
-
       districts_general_data: null,
+      citys: citys,
       selected_citys: citys.slice(0, displayed_city_count),
-      selected_citys_model: citys.slice(0, displayed_city_count).map((city) => { return city.alias || city.name}),
-      last_updated: "",
       meta: null
     }
   },
 
-  created() {
+  async created() {
     let url = "https://api.corona-zahlen.org/districts/";
-    axios.get(url)
-      .then((response) => {
-        const data = response.data.data;
-        const meta = response.data.meta;
-        this.meta = meta;
 
-        let date = new Date(meta.lastUpdate);
-
-        let options = {
-          year: "numeric",
-          month: "numeric",
-          day: "numeric",
-          hour: "2-digit",
-          minute: "2-digit",
-        };
-
-        this.last_updated = date.toLocaleTimeString("de-DE", options);
+    fetch(url)
+      .then(res => res.json())
+      .then(res => {
+        const data = res.data;
+        this.meta = res.meta;
 
         this.districts_general_data = data;
-        for (let i = 0; i < this.citys.length; i++) {
-          for (const city of Object.keys(data).map((key) => data[key])) {
-            if (this.citys[i].ags != null) break;
 
-            if (this.citys[i].name === city.name) this.citys[i].ags = city.ags;
+        for (const city of Object.keys(data).map(x => data[x])) {
+          for (const used_city of this.citys) {
+            if (used_city.ags != null) continue;
+
+            if (used_city.name === city.name) used_city.ags = city.ags;
           }
         }
       })
-      .catch((error) => {
+      .catch(error => {
         console.log(error);
       });
+  },
+
+  computed: {
+    last_updated(){
+      if (this.meta === null) return "NaN";
+      let date = new Date(this.meta.lastUpdate);
+
+      let options = {
+        year: "numeric",
+        month: "numeric",
+        day: "numeric",
+        hour: "2-digit",
+        minute: "2-digit",
+      };
+
+      return date.toLocaleTimeString("de-DE", options);
+    }
   },
 
   methods: {
@@ -153,26 +139,13 @@ export default {
       let curr_city = this.selected_citys[index];
       curr_city.today_data = {date: this.meta.lastUpdate, inzidenz: this.districts_general_data[curr_city.ags].weekIncidence.toFixed(1)};
 
-      this.$events.fire("show-graph-event", this.selected_citys[index])
+      this.$events.fire("show-graph-event", this.selected_citys[index]);
     },
 
-    select_change(event){
-      this.selected_citys[event.target.name.split("City Slot ")[1]] = citys.find((city) => (city.alias || city.name) === event.target.value);
-    },
-
-    filter_citys(citys, index) {
-      if (!this.selected_citys.map((city) => { return city.ags; }).every((elem) => elem !== null)){
-        return ["Loading..."];
-      }
-
-      return [this.selected_citys[index]].concat(citys.filter(({ ags }) => {
-        return !this.selected_citys.map((city) => {
-          return city.ags;
-        }).includes(ags);
-      }))
+    filter_citys(index) {
+      return [this.selected_citys[index]].concat(this.citys.filter(x => !this.selected_citys.map(x => x.ags).includes(x.ags)));
     }
   },
-
 }
 </script>
 
